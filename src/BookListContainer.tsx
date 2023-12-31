@@ -1,32 +1,16 @@
-import { useEffect, useState } from "react"
-import { Book } from "./types"
-import axios from "axios"
 import { Typography } from "@mui/material"
 import BookList from "./BookList"
+import useBooks from "./hooks/useBooks"
 
 const BookListContainer = () => {
-    const [books, setBooks] = useState<Book[]>([])
-    const [loading, setLoading] = useState<boolean>(false)
-    const [errors, setError] = useState<boolean>(false)
+    const {loading, error, books} = useBooks();
+    
+    // if (loading) return <p>Loading ... </p>
 
-    useEffect(() => {
-        const fetchBooks =async () => {
-          setError(false);
-          setLoading(false);
-          try {
-            const res = await axios.get('http://localhost:8080/books');
-            setBooks(res.data);
-          } catch (error) {
-            setError(true)
-          } finally {
-            setLoading(false)
-          }
-        }
-        fetchBooks();
-    }, [])
+    // if (error) return <p>Error ... </p>
 
     return (
-        <Typography>
+        <Typography component='div'>
             <BookList books={books} />
         </Typography>
     )
