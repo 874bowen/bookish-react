@@ -8,13 +8,24 @@ import axios from 'axios';
 function App() {
   console.log(`${process.env.REACT_APP_LOCAL_SERVER_URL}`);
   const [books, setBooks] = useState<Book[]>([])
+  const [loading, setLoading] = useState<boolean>(false)
+  const [errors, setError] = useState<boolean>(false)
   // const books:Book[] = [{ name: 'Refactoring' }, { name: 'Domain-driven design' }]
 
   useEffect(() => {
-    axios.get('http://localhost:8080/books').then((res) => {
-      if (res.status === 200) setBooks(res.data)
-    }).catch(error => console.log(error)
-    )
+    const fetchBooks =async () => {
+      setError(false);
+      setLoading(false);
+      try {
+        const res = await axios.get('http://localhost:8080/books');
+        setBooks(res.data);
+      } catch (error) {
+        setError(true)
+      } finally {
+        setLoading(false)
+      }
+    }
+    fetchBooks();
   }, [])
   return (
     <>
