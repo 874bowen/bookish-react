@@ -8,11 +8,11 @@ describe('Bookish application', function() {
       .catch(err => err)
   })
 
-  afterEach(async() => {
-    return axios
-      .delete(`http://localhost:8080/books?_cleanup=true`)
-      .catch(err => err)
-  })
+  // afterEach(async() => {
+  //   return axios
+  //     .delete(`http://localhost:8080/books?_cleanup=true`)
+  //     .catch(err => err)
+  // })
 
   // add items to stub server before tests and after ensuring there is no data
   beforeEach(()=> {
@@ -29,6 +29,8 @@ describe('Bookish application', function() {
         .catch(err => err)
       })
   })
+
+  // describe('home page tests', () => {
   it('Visits the bookish', function() {
     cy.visit('http://localhost:3000/');
     cy.get('h2[data-test="heading"]').contains('Bookish')
@@ -45,4 +47,14 @@ describe('Bookish application', function() {
       )
     });
   })
+  // })
+
+  // describe('book details page', () => {
+  it('Goes to book detail page', () => {
+    cy.visit('http://localhost:3000/');
+    cy.get('div.book-item').contains('View Details').eq(0).click()
+    cy.url().should('include', "books/1")
+    cy.get('h2.book-title').contains('Refactoring');
+  })
+  // })
 })
