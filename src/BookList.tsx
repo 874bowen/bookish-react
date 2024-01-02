@@ -5,6 +5,7 @@ const BookList = ({ books }: { books: Book[] }) => (
     {books.map((book) => (
       <div className="book-item" key={book.name}>
         <h2>{book.name}</h2>
+        <a href={`/books/${book.id}`}>View Details</a>
       </div>
     ))}
   </div>
