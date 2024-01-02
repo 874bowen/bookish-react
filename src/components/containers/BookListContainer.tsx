@@ -1,6 +1,6 @@
 import { Typography } from "@mui/material"
-import BookList from "./BookList"
-import { useBooks } from "./hooks/useBooks"
+import BookList from "../BookList"
+import { useBooks } from "../../hooks/useBooks"
 
 const BookListContainer = () => {
     const {loading, error, books} = useBooks();

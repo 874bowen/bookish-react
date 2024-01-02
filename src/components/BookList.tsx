@@ -1,4 +1,4 @@
-import { Book } from "./types";
+import { Book } from "../types";
 
 const BookList = ({ books }: { books: Book[] }) => (
   <div data-test="book-list">

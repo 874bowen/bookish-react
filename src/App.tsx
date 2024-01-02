@@ -1,8 +1,8 @@
 import { Typography } from '@mui/material';
 import './App.css';
-import BookListContainer from './BookListContainer';
+import BookListContainer from './components/containers/BookListContainer';
 import { Route, Routes } from 'react-router';
-import BookDetailContainer from './BookDetailContainer';
+import BookDetailContainer from './components/containers/BookDetailContainer';
 
 function App() {
   // console.log(`${process.env.REACT_APP_LOCAL_SERVER_URL}`);
