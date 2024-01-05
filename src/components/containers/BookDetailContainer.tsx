@@ -1,24 +1,10 @@
-import { useEffect, useState } from "react"
-import { useParams } from "react-router"
-import { Book } from "../../types"
-import axios from "axios"
+import { useBook } from "../../hooks/useBook"
+import BookDetail from "../BookDetail/BookDetail";
 
 const BookDetailContainer = () => {
-    const { id } = useParams<string>()
-    const [book, setBook] = useState<Book>()
+    const { book } = useBook();
 
-    useEffect(() => {
-        const fetchBook = async () => await axios.get(`${process.env.REACT_APP_LOCAL_SERVER_URL}/books/${id}`)
-            .then(res => setBook(res.data))
-            .catch(err => console.log(err))
-        fetchBook()
-    }, [id])
-
-    return (    
-        <div className="detail">
-            <h2 className="book-title">{book && book.name}</h2>
-        </div>
-    )
+    return <BookDetail book={book} /> 
 }
 
 export default BookDetailContainer
