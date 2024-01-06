@@ -1,11 +1,14 @@
-import { Book } from "../../types"
+import { Book } from "../../types";
 
-const BookDetail = ({ book }: any) => {
-    return (
-        <div className="detail">
-            <h2 className="book-title">{book && book.name}</h2>
-        </div>
-    )
-}
+const BookDetail = ({ book }: { book: Book }) => {
+  return (
+    <div className="detail">
+      <h2 className="book-title">{book && book.name}</h2>
+      <p className="book-description" data-testid="book-description">
+        {book.description ? book.description : book.name}
+      </p>
+    </div>
+  );
+};
 
 export default BookDetail;
